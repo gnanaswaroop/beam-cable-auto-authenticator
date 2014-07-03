@@ -1,9 +1,9 @@
 package com.swaroop.beamautologin;
 
-import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
-import com.swaroop.beamautologin.R;
+import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
+import android.widget.TextView;
 
 public class AboutActivity extends Activity {
 
@@ -11,6 +11,16 @@ public class AboutActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_about);
+
+		TextView homePage = (TextView) findViewById(R.id.project_home_page_field);
+		if (homePage != null) {
+			homePage.setMovementMethod(LinkMovementMethod.getInstance());
+		}
+
+		TextView disclaimer = (TextView) findViewById(R.id.disclaimer);
+		if (disclaimer != null) {
+			disclaimer.setMovementMethod(LinkMovementMethod.getInstance());
+		}
 	}
 
 }
