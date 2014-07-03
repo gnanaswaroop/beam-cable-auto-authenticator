@@ -324,11 +324,17 @@ public class BeamCableAutoAuthenticator extends Activity {
 		if(loginData != null && loginData.length == 2) {
 			log("Successfully Logged in with User - " + loginData[0] + " And at IP Address : " + loginData[1]);
 
+			String loggedInUserValue = loginData[0];
+			loggedInUserValue = loggedInUserValue != null ? loggedInUserValue.trim() : loggedInUserValue;
+			
 			TextView loggedInUser = (TextView) findViewById(R.id.loggedInUserField);
-			setTextToTextView(loggedInUser, loginData[0]);
+			setTextToTextView(loggedInUser, loggedInUserValue);
 
+			String ipAddressValue = loginData[1];
+			ipAddressValue = ipAddressValue != null ? ipAddressValue.trim() : ipAddressValue;
+			
 			TextView ipAddress = (TextView) findViewById(R.id.ipAddressField);
-			setTextToTextView(ipAddress, loginData[1]);
+			setTextToTextView(ipAddress, ipAddressValue);
 		} else {
 			emptyRuntimeDetails();
 		}
