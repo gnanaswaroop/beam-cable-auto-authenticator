@@ -1,8 +1,5 @@
 package com.swaroop.beamautologin;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +18,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 /**
  * Beam Cable Auto Authenticator - Unofficial
@@ -56,11 +56,11 @@ public class BeamCableAutoAuthenticator extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_beam_cable_auto_authenticator);
 
-		// Initiate a process to determine the network connectivity
-		new NetworkAsyncTask().execute(new NETWORK_OPERATION[] {NETWORK_OPERATION.DETECT_CONNECTIVITY});
-
 		// Fetch the previously stored credentials 
 		getCredentialsFromSharedPreferences();
+
+		// Start the login process if the credentials are already stored. Else wait for the user to enter them.
+		new NetworkAsyncTask().execute(new NETWORK_OPERATION[] {NETWORK_OPERATION.LOGIN});
 
 		// Attach the events for Login/Logout buttons
 		attachEvents();
