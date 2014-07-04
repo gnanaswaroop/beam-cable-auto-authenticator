@@ -1,6 +1,13 @@
 package com.swaroop.beamautologin;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,9 +25,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
 
 /**
  * Beam Cable Auto Authenticator - Unofficial
@@ -43,11 +47,6 @@ public class BeamCableAutoAuthenticator extends Activity {
 	private String username = "";
 	private String password = "";
 	private boolean shouldStoreCredentials = true;
-
-	//	// Network Operations 
-	//	public Integer OPERATION_LOGIN = 0;
-	//	public Integer OPERATION_LOGOUT = OPERATION_LOGIN + 1; // 1
-	//	public Integer OPERATION_DETECT_CONNECTIVITY = OPERATION_LOGOUT + 1; //2
 
 	public enum NETWORK_OPERATION {LOGIN, LOGOUT, DETECT_CONNECTIVITY};
 
@@ -96,7 +95,16 @@ public class BeamCableAutoAuthenticator extends Activity {
 	 */
 	private void detectConnectivityInternal() {
 
+		// Wait for a while before checking Connectivity
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// Supress the wait. 
+		}
+		
 		TextView connectivityStatusField = (TextView) findViewById(R.id.connectivityStatusField);
+		setTextToTextView(connectivityStatusField, R.string.status_check_in_progress_label);
+
 		try {
 			boolean isConnected = BeamAuthenticatorUtil.detectConnectivity();
 			if(isConnected) {
@@ -146,7 +154,6 @@ public class BeamCableAutoAuthenticator extends Activity {
 			return null;		
 		}
 	}
-
 
 
 	/**
@@ -308,16 +315,44 @@ public class BeamCableAutoAuthenticator extends Activity {
 			public void run() {
 				Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG)
 				.show();
+				
+				displayNotification(message);
 			}
 		});
 
 	}
+	
+	@SuppressLint("NewApi")
+	private void displayNotification(final String message) {
+		
+		Intent intent = new Intent(this, BeamCableAutoAuthenticator.class);
+		PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+		Notification n  = new Notification.Builder(this)
+		        .setContentTitle("Beam Cable Auto Login")
+		        .setContentText(message)
+		        .setSmallIcon(R.drawable.ic_launcher)
+		        .setContentIntent(pIntent)
+		        .setAutoCancel(true)
+		        .build();
+		    
+		  
+		NotificationManager notificationManager = 
+		  (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+		notificationManager.notify(0, n); 
+	}
 
 	private void log(String message) {
 		Log.d(TAG_BEAM_CABLE_AUTO_AUTHENTICATOR, message);
-
 	}
 
+	
+	/** 
+	 * Takes care of calling the Beam Authenticator Util and fetches the logged-in username and IP address to be displayed on the UI. 
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
 	private void loginInternal() throws MalformedURLException, IOException {
 		log("Logging IN Start");
 		String[] loginData = BeamAuthenticatorUtil.login(username, password);
@@ -335,6 +370,9 @@ public class BeamCableAutoAuthenticator extends Activity {
 			
 			TextView ipAddress = (TextView) findViewById(R.id.ipAddressField);
 			setTextToTextView(ipAddress, ipAddressValue);
+			
+			displayNotification("Login Success - IP Address : " + ipAddressValue);
+
 		} else {
 			emptyRuntimeDetails();
 		}

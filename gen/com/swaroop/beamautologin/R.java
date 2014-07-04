@@ -70,34 +70,35 @@ public final class R {
         public static final int about=0x7f070000;
     }
     public static final class string {
-        public static final int about=0x7f050010;
-        public static final int about_content=0x7f050015;
-        public static final int action_settings=0x7f050013;
+        public static final int about=0x7f050011;
+        public static final int about_content=0x7f050016;
+        public static final int action_settings=0x7f050014;
         public static final int app_name=0x7f050000;
-        public static final int author=0x7f050017;
-        public static final int author_label=0x7f050016;
-        public static final int cleared_saved_credentials=0x7f050011;
-        public static final int connected_label=0x7f050007;
+        public static final int author=0x7f050018;
+        public static final int author_label=0x7f050017;
+        public static final int cleared_saved_credentials=0x7f050012;
+        public static final int connected_label=0x7f050008;
         public static final int connectivity_status_label=0x7f050005;
-        public static final int disclaimer_content=0x7f05001b;
-        public static final int error_label=0x7f050009;
-        public static final int ipaddress_label=0x7f05000b;
-        public static final int logged_in_user_label=0x7f05000a;
+        public static final int disclaimer_content=0x7f05001c;
+        public static final int error_label=0x7f05000a;
+        public static final int ipaddress_label=0x7f05000c;
+        public static final int logged_in_user_label=0x7f05000b;
         public static final int login_label=0x7f050002;
         public static final int logout_label=0x7f050004;
-        public static final int menu_clear_credentials=0x7f05000f;
-        public static final int network_operation_not_supported_error=0x7f05000e;
-        public static final int not_connected_label=0x7f050008;
+        public static final int menu_clear_credentials=0x7f050010;
+        public static final int network_operation_not_supported_error=0x7f05000f;
+        public static final int not_connected_label=0x7f050009;
         public static final int not_determined_label=0x7f050006;
-        public static final int password_empty_error=0x7f05000d;
+        public static final int password_empty_error=0x7f05000e;
         public static final int password_label=0x7f050001;
-        public static final int project_home_page_field=0x7f05001a;
-        public static final int project_home_page_label=0x7f050019;
+        public static final int project_home_page_field=0x7f05001b;
+        public static final int project_home_page_label=0x7f05001a;
         public static final int remember_credentials_label=0x7f050003;
-        public static final int title_activity_about=0x7f050012;
-        public static final int username_empty_error=0x7f05000c;
-        public static final int version=0x7f050014;
-        public static final int version_label=0x7f050018;
+        public static final int status_check_in_progress_label=0x7f050007;
+        public static final int title_activity_about=0x7f050013;
+        public static final int username_empty_error=0x7f05000d;
+        public static final int version=0x7f050015;
+        public static final int version_label=0x7f050019;
     }
     public static final class style {
         /** 
