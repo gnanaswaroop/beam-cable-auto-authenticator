@@ -8,6 +8,7 @@
     <string name="logout_label">Logout </string>
     <string name="connectivity_status_label">Status</string>
     <string name="not_determined_label">Not Determined</string>
+    <string name="status_check_in_progress_label">Status Check - In progress</string>
     <string name="connected_label">Connected</string>
     <string name="not_connected_label">Not Connected</string>
     <string name="error_label">Error</string>

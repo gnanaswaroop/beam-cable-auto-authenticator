@@ -11,9 +11,14 @@ import java.net.URL;
 
 public class BeamAuthenticatorUtil {
 
+	/**
+	 * Detects Connectivity to google.com (assumes it's a website that never goes down)
+	 * @return
+	 * @throws IOException
+	 */
 	public static boolean detectConnectivity() throws IOException {
 
-		String sURL = "http://google.com";
+		String sURL = "http://www.google.com/robots.txt";
 
 		URL uri = new URL(sURL);
 		HttpURLConnection huc = (HttpURLConnection) uri.openConnection();
@@ -24,6 +29,7 @@ public class BeamAuthenticatorUtil {
 			BufferedReader in = null;  
 			in = new BufferedReader(new InputStreamReader(huc.getInputStream()));
 
+	
 			String s = null;
 			while((s = in.readLine()) != null) {
 				if(s.contains("http://portal.beamtele.com")) {
@@ -31,6 +37,9 @@ public class BeamAuthenticatorUtil {
 					return false;
 				}
 			}
+		} else {
+			log("HTTP Code is not Ok to proceed, assuming to be offline " + responseCode);
+			return false;
 		}
 
 		log("Offline detection keywords not present, Assuming to be online");
@@ -41,6 +50,15 @@ public class BeamAuthenticatorUtil {
 		Log.d(BeamCableAutoAuthenticator.TAG_BEAM_CABLE_AUTO_AUTHENTICATOR, message);
 	}
 
+	/**
+	 * This method takes care of the Login operation into the Beam Network. 
+	 * This follows the same pattern as how the Web Browser logs into the Beam Cable Portal. 
+	 * @param username
+	 * @param password
+	 * @return
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
 	public static String[] login(String username, String password)
 			throws MalformedURLException, IOException {
 
@@ -88,6 +106,12 @@ public class BeamAuthenticatorUtil {
 
 	}
 
+	/**
+	 * Method logs the user out of the Beam Cable network. 
+	 * This URL is specific for Beam Cable ISP 
+	 * @return
+	 * @throws IOException
+	 */
 	public static boolean logout() throws IOException {
 
 		String logoutURL = "http://portal.beamtele.com/newportal/Ajax.php?function=userLogout";
