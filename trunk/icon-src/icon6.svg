@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="512"
+   height="512"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="icon6.svg"
+   inkscape:export-filename="D:\Google-Code-SVN\beam-cable-auto-authenticator\icon-src\icon6.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3765">
+      <stop
+         style="stop-color:#ff9bec;stop-opacity:1;"
+         offset="0"
+         id="stop3767" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop3769" />
+    </linearGradient>
+    <filter
+       id="filter4009"
+       inkscape:label="Fancy blur"
+       inkscape:menu="Blurs"
+       inkscape:menu-tooltip="Smooth colorized contour which allows desaturation and hue rotation"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur4011"
+         stdDeviation="5"
+         result="result1" />
+      <feComposite
+         id="feComposite4013"
+         in2="result1"
+         operator="arithmetic"
+         k2="2"
+         in="result1" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.90509668"
+     inkscape:cx="346.48985"
+     inkscape:cy="263.52336"
+     inkscape:document-units="px"
+     inkscape:current-layer="g4143"
+     showgrid="false"
+     inkscape:window-width="1600"
+     inkscape:window-height="828"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       orientation="0,1"
+       position="546.9029,631.97669"
+       id="guide4015" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-540.36218)">
+    <g
+       id="g3891"
+       transform="matrix(0.97191414,0,0,1.0463672,-520.75019,44.890658)"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <g
+         id="g4143"
+         transform="matrix(1.055571,0,0,1.0802506,-41.189795,-59.926965)">
+        <path
+           transform="matrix(0.80169561,0,0,0.7776948,15.417716,482.00456)"
+           d="m 977.84375,15.78125 c -175.2794,0 -318.34375,131.96821 -318.34375,295.5 0,163.53179 143.06435,295.5 318.34375,295.5 175.27945,0 318.37505,-131.96682 318.37505,-295.5 0,-163.53318 -143.0956,-295.5 -318.37505,-295.5 z"
+           id="path4007"
+           style="color:#000000;fill:#ff6600;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.7566638;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;filter:url(#filter4009);enable-background:accumulate"
+           inkscape:original="M 977.84375 26.28125 C 807.81894 26.28125 670 153.8801 670 311.28125 C 670 468.6824 807.81894 596.28125 977.84375 596.28125 C 1147.8686 596.28125 1285.7188 468.6824 1285.7188 311.28125 C 1285.7188 153.8801 1147.8686 26.28125 977.84375 26.28125 z "
+           inkscape:radius="10.502579"
+           sodipodi:type="inkscape:offset" />
+        <path
+           inkscape:export-ydpi="90"
+           inkscape:export-xdpi="90"
+           inkscape:export-filename="D:\Google-Code-SVN\beam-cable-auto-authenticator\icon-src\icon6.png"
+           sodipodi:type="arc"
+           style="color:#000000;fill:#ff6600;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.2558409;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="path3867"
+           sodipodi:cx="977.85712"
+           sodipodi:cy="311.28571"
+           sodipodi:rx="307.85715"
+           sodipodi:ry="285"
+           d="m 1285.7143,311.28571 c 0,157.40115 -137.8324,285 -307.85718,285 -170.02481,0 -307.85715,-127.59885 -307.85715,-285 0,-157.40116 137.83234,-285.000004 307.85715,-285.000004 170.02478,0 307.85718,127.598844 307.85718,285.000004 z"
+           transform="matrix(0.80169561,0,0,0.7776948,15.417716,482.00456)" />
+        <path
+           inkscape:export-ydpi="90"
+           inkscape:export-xdpi="90"
+           inkscape:export-filename="D:\Google-Code-SVN\beam-cable-auto-authenticator\icon-src\icon6.png"
+           transform="matrix(0.80169561,0,0,0.7776948,15.417716,482.00456)"
+           d="m 977.84375,121.5625 c -122.74836,0 -212.5625,88.05938 -212.5625,189.71875 0,101.65937 89.81414,189.71875 212.5625,189.71875 122.74715,0 212.59375,-88.07449 212.59375,-189.71875 0,-101.64426 -89.8466,-189.71875 -212.59375,-189.71875 z"
+           id="path3981"
+           style="color:#000000;fill:#808000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.7566638;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           inkscape:original="M 977.84375 64.75 C 827.06065 64.75 708.46875 176.32978 708.46875 311.28125 C 708.46875 446.23272 827.06065 557.8125 977.84375 557.8125 C 1128.6269 557.8125 1247.25 446.22762 1247.25 311.28125 C 1247.25 176.33488 1128.6269 64.75 977.84375 64.75 z "
+           inkscape:radius="-56.827034"
+           sodipodi:type="inkscape:offset" />
+        <path
+           inkscape:export-ydpi="90"
+           inkscape:export-xdpi="90"
+           inkscape:export-filename="D:\Google-Code-SVN\beam-cable-auto-authenticator\icon-src\icon6.png"
+           transform="matrix(0.80169561,0,0,0.87050213,15.417716,455.39609)"
+           d="m 977.84375,225.34375 c -72.63837,0 -108.78125,45.46915 -108.78125,85.9375 0,40.46835 36.14288,85.9375 108.78125,85.9375 72.63135,0 108.81245,-45.51061 108.81245,-85.9375 0,-40.42689 -36.1811,-85.9375 -108.81245,-85.9375 z"
+           id="path3979"
+           style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.7566638;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           inkscape:original="M 977.84375 121.90625 C 855.6612 121.90625 765.625 209.69861 765.625 311.28125 C 765.625 412.86389 855.6612 500.65625 977.84375 500.65625 C 1100.0264 500.65625 1190.0938 412.85123 1190.0938 311.28125 C 1190.0938 209.71127 1100.0264 121.90625 977.84375 121.90625 z "
+           inkscape:radius="-103.42758"
+           sodipodi:type="inkscape:offset" />
+        <path
+           inkscape:export-ydpi="90"
+           inkscape:export-xdpi="90"
+           inkscape:export-filename="D:\Google-Code-SVN\beam-cable-auto-authenticator\icon-src\icon6.png"
+           sodipodi:end="0.87266463"
+           sodipodi:start="0"
+           transform="matrix(0.16809637,-1.750039,1.6341722,0.1007827,307.9222,2173.9166)"
+           d="m 981.11064,225.2903 c 0,47.19183 -20.08375,91.96578 -54.8588,122.30011 L 827.53589,225.2903 z"
+           sodipodi:ry="159.65146"
+           sodipodi:rx="153.57475"
+           sodipodi:cy="225.2903"
+           sodipodi:cx="827.53589"
+           id="path4001"
+           style="color:#000000;fill:#ffff00;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.23750281;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           sodipodi:type="arc" />
+        <path
+           inkscape:export-ydpi="90"
+           inkscape:export-xdpi="90"
+           inkscape:export-filename="D:\Google-Code-SVN\beam-cable-auto-authenticator\icon-src\icon6.png"
+           sodipodi:type="arc"
+           style="color:#000000;fill:#ff6600;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.7566638;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="path3875"
+           sodipodi:cx="732.14288"
+           sodipodi:cy="4.1428571"
+           sodipodi:rx="22.142857"
+           sodipodi:ry="22.142857"
+           d="m 754.28574,4.1428571 c 0,12.2291619 -9.91369,22.1428569 -22.14286,22.1428569 -12.22916,0 -22.14285,-9.913695 -22.14285,-22.1428569 C 710.00003,-8.0863049 719.91372,-18 732.14288,-18 c 12.22917,0 22.14286,9.9136951 22.14286,22.1428571 z"
+           transform="matrix(0.80169561,0,0,0.7776948,350.21292,536.25762)" />
+        <path
+           inkscape:export-filename="D:\Google-Code-SVN\beam-cable-auto-authenticator\icon-src\icon6.png"
+           inkscape:export-ydpi="90"
+           inkscape:export-xdpi="90"
+           sodipodi:type="arc"
+           style="color:#000000;fill:#808000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.7566638;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="path3883"
+           sodipodi:cx="732.14288"
+           sodipodi:cy="4.1428571"
+           sodipodi:rx="22.142857"
+           sodipodi:ry="22.142857"
+           d="m 754.28574,4.1428571 a 22.142857,22.142857 0 1 1 -44.28571,0 22.142857,22.142857 0 1 1 44.28571,0 z"
+           transform="matrix(0.80169561,0,0,0.7776948,312.40587,597.58434)" />
+        <path
+           inkscape:export-filename="D:\Google-Code-SVN\beam-cable-auto-authenticator\icon-src\icon6.png"
+           inkscape:export-ydpi="90"
+           inkscape:export-xdpi="90"
+           sodipodi:type="arc"
+           style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.7566638;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="path3883-1"
+           sodipodi:cx="732.14288"
+           sodipodi:cy="4.1428571"
+           sodipodi:rx="22.142857"
+           sodipodi:ry="22.142857"
+           d="m 754.28574,4.1428571 a 22.142857,22.142857 0 1 1 -44.28571,0 22.142857,22.142857 0 1 1 44.28571,0 z"
+           transform="matrix(0.80169561,0,0,0.7776948,274.81131,664.58313)" />
+      </g>
+    </g>
+  </g>
+</svg>
