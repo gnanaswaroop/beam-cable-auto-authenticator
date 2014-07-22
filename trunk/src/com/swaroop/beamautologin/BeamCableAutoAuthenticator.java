@@ -67,6 +67,9 @@ public class BeamCableAutoAuthenticator extends Activity {
 		// Fetch the previously stored credentials 
 		getCredentialsFromSharedPreferences();
 		
+		// Attach the events for Login/Logout buttons
+		attachEvents();
+		
 		// Check if command received from Intent, if yes then don't proceed below. 
 		if(verifyIfLaunchedViaURLScheme()) {
 			return;
@@ -75,9 +78,6 @@ public class BeamCableAutoAuthenticator extends Activity {
 
 		// Start the login process if the credentials are already stored. Else wait for the user to enter them.
 		new NetworkAsyncTask().execute(new NETWORK_OPERATION[] {NETWORK_OPERATION.LOGIN});
-
-		// Attach the events for Login/Logout buttons
-		attachEvents();
 	}
 
 	private boolean verifyIfLaunchedViaURLScheme() {
