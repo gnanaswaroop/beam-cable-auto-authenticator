@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,9 +45,12 @@ public class BeamCableAutoAuthenticator extends Activity {
 	private static final String BLANK_DEFAULT_VALUE = "";
 
 	// These variables will be used throughout the application flow. 
-	private String username = "";
-	private String password = "";
-	private boolean shouldStoreCredentials = true;
+	private static String username = "";
+	private static String password = "";
+	private static boolean shouldStoreCredentials = true;
+
+	private static String LOGOUT_INTENT_COMMAND = "logout";
+	private static String LOGIN_INTENT_COMMAND = "login";
 
 	public enum NETWORK_OPERATION {LOGIN, LOGOUT, DETECT_CONNECTIVITY};
 
@@ -55,14 +59,45 @@ public class BeamCableAutoAuthenticator extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_beam_cable_auto_authenticator);
 
+		privateAction();
+	}
+
+	public void privateAction() {
+
 		// Fetch the previously stored credentials 
 		getCredentialsFromSharedPreferences();
+		
+		// Check if command received from Intent, if yes then don't proceed below. 
+		if(verifyIfLaunchedViaURLScheme()) {
+			return;
+		}
+
 
 		// Start the login process if the credentials are already stored. Else wait for the user to enter them.
 		new NetworkAsyncTask().execute(new NETWORK_OPERATION[] {NETWORK_OPERATION.LOGIN});
 
 		// Attach the events for Login/Logout buttons
 		attachEvents();
+	}
+
+	private boolean verifyIfLaunchedViaURLScheme() {
+		Uri data = getIntent().getData();
+
+		if(data == null) {
+			return false;
+		}
+
+		String commandReceived = data.getHost();
+		if(LOGIN_INTENT_COMMAND.equalsIgnoreCase(commandReceived)) {
+			new NetworkAsyncTask().execute(new NETWORK_OPERATION[] {NETWORK_OPERATION.LOGIN});
+			return true;
+		} else if(LOGOUT_INTENT_COMMAND.equalsIgnoreCase(commandReceived)) {
+			new NetworkAsyncTask().execute(new NETWORK_OPERATION[] {NETWORK_OPERATION.LOGOUT});
+			return true;
+		} 
+
+		// If no command is received, then ignore the input command and display the activity		
+		return false;
 	}
 
 	/**
@@ -101,7 +136,7 @@ public class BeamCableAutoAuthenticator extends Activity {
 		} catch (InterruptedException e) {
 			// Supress the wait. 
 		}
-		
+
 		TextView connectivityStatusField = (TextView) findViewById(R.id.connectivityStatusField);
 		setTextToTextView(connectivityStatusField, R.string.status_check_in_progress_label);
 
@@ -276,11 +311,21 @@ public class BeamCableAutoAuthenticator extends Activity {
 		return (EditText) findViewById(R.id.passwordField);
 	}
 
+	/**
+	 * Fetches the UI reference for the Save Credentials Toggle field. 
+	 * @return
+	 */
 	private ToggleButton getSaveCredentialsToggleButton() {
 		return (ToggleButton) findViewById(R.id.saveCredentialsToggleField);
 	}
 
+	/**
+	 * Sets a Message Resource String to the UI.
+	 * @param field
+	 * @param message
+	 */
 	private void setTextToTextView(final TextView field, final int message) {
+
 		runOnUiThread(new Thread("Set Text to Field " + field + " to " + message) {
 			public void run() {
 				field.setText(message);
@@ -288,7 +333,13 @@ public class BeamCableAutoAuthenticator extends Activity {
 		});
 	}
 
+	/**
+	 * Setting a Message String to the UI.
+	 * @param field
+	 * @param message
+	 */
 	private void setTextToTextView(final TextView field, final String message) {
+
 		runOnUiThread(new Thread("Set Text to Field " + field + " to " + message) {
 			public void run() {
 				field.setText(message);
@@ -315,30 +366,30 @@ public class BeamCableAutoAuthenticator extends Activity {
 			public void run() {
 				Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG)
 				.show();
-				
+
 				displayNotification(message);
 			}
 		});
 
 	}
-	
+
 	@SuppressLint("NewApi")
 	private void displayNotification(final String message) {
-		
+
 		Intent intent = new Intent(this, BeamCableAutoAuthenticator.class);
 		PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
 		Notification n  = new Notification.Builder(this)
-		        .setContentTitle("Beam Cable Auto Login")
-		        .setContentText(message)
-		        .setSmallIcon(R.drawable.ic_launcher)
-		        .setContentIntent(pIntent)
-		        .setAutoCancel(true)
-		        .build();
-		    
-		  
+		.setContentTitle(getResources().getString(R.string.app_name))
+		.setContentText(message)
+		.setSmallIcon(R.drawable.ic_launcher)
+		.setContentIntent(pIntent)
+		.setAutoCancel(true)
+		.build();
+
+
 		NotificationManager notificationManager = 
-		  (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+				(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
 		notificationManager.notify(0, n); 
 	}
@@ -347,7 +398,7 @@ public class BeamCableAutoAuthenticator extends Activity {
 		Log.d(TAG_BEAM_CABLE_AUTO_AUTHENTICATOR, message);
 	}
 
-	
+
 	/** 
 	 * Takes care of calling the Beam Authenticator Util and fetches the logged-in username and IP address to be displayed on the UI. 
 	 * @throws MalformedURLException
@@ -361,16 +412,16 @@ public class BeamCableAutoAuthenticator extends Activity {
 
 			String loggedInUserValue = loginData[0];
 			loggedInUserValue = loggedInUserValue != null ? loggedInUserValue.trim() : loggedInUserValue;
-			
+
 			TextView loggedInUser = (TextView) findViewById(R.id.loggedInUserField);
 			setTextToTextView(loggedInUser, loggedInUserValue);
 
 			String ipAddressValue = loginData[1];
 			ipAddressValue = ipAddressValue != null ? ipAddressValue.trim() : ipAddressValue;
-			
+
 			TextView ipAddress = (TextView) findViewById(R.id.ipAddressField);
 			setTextToTextView(ipAddress, ipAddressValue);
-			
+
 			displayNotification("Login Success - IP Address : " + ipAddressValue);
 
 		} else {
@@ -440,13 +491,7 @@ public class BeamCableAutoAuthenticator extends Activity {
 		}
 
 		return false;
-	}
+	}	
 
-//	private void toggleProgressBar(boolean isEnabled) {
-//		ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
-//		if(isEnabled) {
-//			progressBar.
-//		}
-//	}
 
 }
