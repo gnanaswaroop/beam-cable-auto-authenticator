@@ -1,13 +1,13 @@
 package com.swaroop.beamautologin;
 
-import android.util.Log;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import android.util.Log;
 
 public class BeamAuthenticatorUtil {
 
@@ -16,9 +16,25 @@ public class BeamAuthenticatorUtil {
 	 * @return
 	 * @throws IOException
 	 */
-	public static boolean detectConnectivity() throws IOException {
+	public static boolean detectConnectivityBoolean() throws IOException {
 
-		String sURL = "http://www.google.com/robots.txt";
+		String[] loginDetails = detectConnectivityAndFetchLoginDetails();
+		if(loginDetails == null || loginDetails.length == 0) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Changed logic to support the new way to verify if the user is logged on and connected to a beam network.
+	 * @return
+	 * @throws IOException
+	 */
+	public static String[] detectConnectivityAndFetchLoginDetails() throws IOException {
+
+		long currentTime = System.currentTimeMillis();
+
+		String sURL = "http://portal.beamtele.com/newportal/Ajax.php?function=checkIsLoggedOn&time="+ currentTime;
 
 		URL uri = new URL(sURL);
 		HttpURLConnection huc = (HttpURLConnection) uri.openConnection();
@@ -28,24 +44,45 @@ public class BeamAuthenticatorUtil {
 		if(responseCode == 200) {
 			BufferedReader in = null;  
 			in = new BufferedReader(new InputStreamReader(huc.getInputStream()));
-
 	
 			String s = null;
 			while((s = in.readLine()) != null) {
-				if(s.contains("http://portal.beamtele.com")) {
-					log("Detected offline, returning status");
-					return false;
+				
+				// If the response is 0, then it means the user is not currently logged on. 
+				if("0".equals(s)) {
+					log("Not Logged in to Beam Network");
+					return null;
+				} else if(s.contains("at")){
+					String[] data = s.split(" at");
+
+					if(data.length >= 2) {
+						String successUserName = data[0];
+						String ipAddress = data[1];
+
+						// Remove any Single Quotes found
+						successUserName = successUserName.replace("'", "").trim();
+		
+						// Remove the extra characters - &nbsp;-&nbsp;EC
+						ipAddress = ipAddress.replace("&nbsp;-&nbsp;EC", "").trim();
+						
+						log("Username - " + successUserName);
+						log("IP Address - " + ipAddress);
+						log("Beam Cable Connectivity Verified");
+
+						return new String[] {successUserName, ipAddress};
+					} 
+				} else {
+					log("Response received for the CheckIsLoggedOn request is " + s + " And assuming to be offline");
+					return null;
 				}
 			}
-		} else {
-			log("HTTP Code is not Ok to proceed, assuming to be offline " + responseCode);
-			return false;
-		}
+		} 
 
-		log("Offline detection keywords not present, Assuming to be online");
-		return true;
+		log("HTTP Code is not Ok to proceed, assuming to be offline " + responseCode);
+		return null;
+
 	}
-
+	
 	private static void log(String message) {
 		Log.d(BeamCableAutoAuthenticator.TAG_BEAM_CABLE_AUTO_AUTHENTICATOR, message);
 	}
