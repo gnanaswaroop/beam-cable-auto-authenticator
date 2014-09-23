@@ -141,8 +141,10 @@ public class BeamCableAutoAuthenticator extends Activity {
 		setTextToTextView(connectivityStatusField, R.string.status_check_in_progress_label);
 
 		try {
-			boolean isConnected = BeamAuthenticatorUtil.detectConnectivity();
-			if(isConnected) {
+			String[] loggedInUserData = BeamAuthenticatorUtil.detectConnectivityAndFetchLoginDetails();
+			setLoginDetailsToUI(loggedInUserData);
+			
+			if(loggedInUserData != null && loggedInUserData.length > 0) {
 				setTextToTextView(connectivityStatusField, R.string.connected_label);
 			} else {
 				setTextToTextView(connectivityStatusField, R.string.not_connected_label);
@@ -154,6 +156,7 @@ public class BeamCableAutoAuthenticator extends Activity {
 			setTextToTextView(connectivityStatusField, R.string.error_label);
 		}
 	}
+
 
 	/*
 	 * Do the Connectivity Determination in an Async thread 
@@ -410,25 +413,35 @@ public class BeamCableAutoAuthenticator extends Activity {
 		if(loginData != null && loginData.length == 2) {
 			log("Successfully Logged in with User - " + loginData[0] + " And at IP Address : " + loginData[1]);
 
-			String loggedInUserValue = loginData[0];
-			loggedInUserValue = loggedInUserValue != null ? loggedInUserValue.trim() : loggedInUserValue;
+			setLoginDetailsToUI(loginData);
 
-			TextView loggedInUser = (TextView) findViewById(R.id.loggedInUserField);
-			setTextToTextView(loggedInUser, loggedInUserValue);
-
-			String ipAddressValue = loginData[1];
-			ipAddressValue = ipAddressValue != null ? ipAddressValue.trim() : ipAddressValue;
-
-			TextView ipAddress = (TextView) findViewById(R.id.ipAddressField);
-			setTextToTextView(ipAddress, ipAddressValue);
-
-			displayNotification("Login Success - IP Address : " + ipAddressValue);
+			displayNotification("Login Success - IP Address : " + loginData[1]);
 
 		} else {
 			emptyRuntimeDetails();
 		}
 		storeCredentialsIntoSharedPreferences();
 		log("Logging IN End");
+	}
+
+	protected void setLoginDetailsToUI(String[] loginData) {
+		if(loginData == null) {
+			// Nothing to set on the UI.. Return 
+			log("Nothing to set on the UI, Probably logged off state");
+			return;
+		}
+		
+		String loggedInUserValue = loginData[0];
+		loggedInUserValue = loggedInUserValue != null ? loggedInUserValue.trim() : loggedInUserValue;
+
+		TextView loggedInUser = (TextView) findViewById(R.id.loggedInUserField);
+		setTextToTextView(loggedInUser, loggedInUserValue);
+
+		String ipAddressValue = loginData[1];
+		ipAddressValue = ipAddressValue != null ? ipAddressValue.trim() : ipAddressValue;
+
+		TextView ipAddress = (TextView) findViewById(R.id.ipAddressField);
+		setTextToTextView(ipAddress, ipAddressValue);
 	}
 
 	private void logoutInternal() throws IOException {
